@@ -1,22 +1,41 @@
 import React, { useState } from "react";
 
 function Form() {
-  const [firstName, setFirstName] = useState("John");
-  const [lastName, setLastName] = useState("Henry");
+  const [formData, setFormData] = useState({
+    firstName: "John",
+    lastName: "Henry",
+  });
 
   function handleFirstNameChange(event) {
-    setFirstName(event.target.value);
+    setFormData({
+      // formData is an object, so we need to copy all the key/value pairs
+      ...formData,
+      // we want to overwrite the lastName key with a new value
+      firstName: event.target.value,
+    });
   }
 
   function handleLastNameChange(event) {
-    setLastName(event.target.value);
+    setFormData({
+      // formData is an object, so we need to copy all the key/value pairs
+      ...formData,
+      // we want to overwrite the lastName key with a new value
+      lastName: event.target.value,
+    });
   }
 
   return (
     <form>
-      <input type="text" onChange={handleFirstNameChange} value={firstName} />
-      <input type="text" onChange={handleLastNameChange} value={lastName} />
-      <button type="submit">Submit</button>
+      <input 
+        type="text"
+        onChange={formData.firstName}
+        value={handleFirstNameChange}
+      />
+      <input 
+        type="text" 
+        onChange={formData.lastName} 
+        value={handleLastNameChange} 
+      />
     </form>
   );
 }
